@@ -66,7 +66,7 @@ php2shell-scanner/
 ## Installation
 
 ```bash
-git clone https://github.com/aceptriana/php2shell-scanner
+git clone https://github.com/aceptriana/php2shell
 cd php2shell-scanner
 pip install -r requirements.txt
 ```
