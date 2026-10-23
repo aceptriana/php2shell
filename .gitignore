@@ -1,0 +1,19 @@
+# credentials — never commit these
+config.local.json
+
+# scanner output
+*.json
+!requirements*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+
+# target lists
+targets*.txt
+hosts*.txt
+results*.txt

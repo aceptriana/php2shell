@@ -1,0 +1,140 @@
+# ================================================================
+#  php2shell Dork Catalog
+#  Targets : CVE-2026-109618 / CVE-2026-109619
+# ================================================================
+#  Code By Acep
+#  github.com/aceptriana
+# ================================================================
+#
+#  Format  : backend:dork_query
+#  Usage   : python dork.py --<backend> --dork-file dork.txt
+#             python dork.py --all --dork-file dork.txt -o out.txt
+#
+#  Backends: google  ddg  yahoo  bing  shodan  censys  fofa  zoomeye
+#
+#  Vulnerable versions:
+#    PHP 8.2.0 – 8.2.34   PHP 8.3.0 – 8.3.35
+#    PHP 8.4.0 – 8.4.26   PHP 8.5.0 – 8.5.11
+# ================================================================
+
+# ──────────────────────────────────────────────────────────────
+#  GOOGLE / DDG / YAHOO / BING  (web search engines)
+# ──────────────────────────────────────────────────────────────
+
+# phpinfo() disclosure pages — most reliable version signal
+google:intitle:"phpinfo()" "PHP Version 8.2"
+google:intitle:"phpinfo()" "PHP Version 8.3"
+google:intitle:"phpinfo()" "PHP Version 8.4"
+google:intitle:"phpinfo()" "PHP Version 8.5"
+google:inurl:"/phpinfo.php" "PHP Version 8"
+google:inurl:"/info.php" "PHP Version 8"
+google:inurl:"/test.php" "PHP Version 8"
+google:intitle:"phpMyAdmin" inurl:"/phpmyadmin"
+google:intitle:"Welcome to phpMyAdmin"
+google:"Fatal error" "PHP 8.2"
+google:"Fatal error" "PHP 8.3"
+google:"Fatal error" "PHP 8.4"
+google:"Powered by PHP/8.2"
+google:"Powered by PHP/8.3"
+google:"Powered by PHP/8.4"
+
+# DuckDuckGo
+ddg:intitle:"phpinfo()" "PHP Version 8.2"
+ddg:intitle:"phpinfo()" "PHP Version 8.3"
+ddg:intitle:"phpinfo()" "PHP Version 8.4"
+ddg:intitle:"phpinfo()" "PHP Version 8.5"
+ddg:intitle:"phpMyAdmin"
+ddg:inurl:phpinfo.php "PHP 8"
+ddg:"Fatal error" "PHP/8.2"
+ddg:"Fatal error" "PHP/8.3"
+ddg:"Fatal error" "PHP/8.4"
+ddg:"X-Powered-By: PHP/8.2"
+ddg:"X-Powered-By: PHP/8.3"
+ddg:"X-Powered-By: PHP/8.4"
+
+# Yahoo
+yahoo:intitle:"phpinfo()" "PHP Version 8.2"
+yahoo:intitle:"phpinfo()" "PHP Version 8.3"
+yahoo:intitle:"phpinfo()" "PHP Version 8.4"
+yahoo:intitle:"phpinfo()" "PHP Version 8.5"
+yahoo:intitle:"phpMyAdmin" "php 8"
+yahoo:inurl:"/phpinfo.php" PHP
+yahoo:"Fatal error" "PHP 8.2"
+yahoo:"Fatal error" "PHP 8.3"
+yahoo:"Fatal error" "PHP 8.4"
+
+# Bing
+bing:intitle:"phpinfo()" "PHP Version 8.2"
+bing:intitle:"phpinfo()" "PHP Version 8.3"
+bing:intitle:"phpinfo()" "PHP Version 8.4"
+bing:intitle:"phpinfo()" "PHP Version 8.5"
+bing:intitle:"phpMyAdmin" "php 8"
+bing:inurl:phpinfo.php "PHP 8"
+bing:"Allowed memory size" "PHP 8.2" "Fatal error"
+bing:"Allowed memory size" "PHP 8.3" "Fatal error"
+bing:"Allowed memory size" "PHP 8.4" "Fatal error"
+
+# ──────────────────────────────────────────────────────────────
+#  SHODAN  (requires paid Freelancer plan — $49 one-time)
+# ──────────────────────────────────────────────────────────────
+
+shodan:"X-Powered-By: PHP/8.2"
+shodan:"X-Powered-By: PHP/8.3"
+shodan:"X-Powered-By: PHP/8.4"
+shodan:"X-Powered-By: PHP/8.5"
+shodan:http.component:"PHP" http.component.version:"8.2"
+shodan:http.component:"PHP" http.component.version:"8.3"
+shodan:http.component:"PHP" http.component.version:"8.4"
+shodan:http.component:"PHP" http.component.version:"8.5"
+shodan:title:"phpMyAdmin" http.component:"PHP"
+shodan:"X-Powered-By: PHP/8" product:"nginx"
+shodan:"X-Powered-By: PHP/8" product:"Apache httpd"
+shodan:title:"PHP-FPM status page"
+
+# ──────────────────────────────────────────────────────────────
+#  CENSYS  (free tier available at search.censys.io)
+# ──────────────────────────────────────────────────────────────
+
+censys:services.http.response.headers.x-powered-by: "PHP/8.2"
+censys:services.http.response.headers.x-powered-by: "PHP/8.3"
+censys:services.http.response.headers.x-powered-by: "PHP/8.4"
+censys:services.http.response.headers.x-powered-by: "PHP/8.5"
+censys:services.http.response.html_title: "phpMyAdmin"
+censys:services.http.response.body: "phpMyAdmin" and services.http.response.headers.x-powered-by: "PHP"
+
+# ──────────────────────────────────────────────────────────────
+#  FOFA  (fofa.info — free tier: 100 results/query)
+# ──────────────────────────────────────────────────────────────
+
+fofa:header="X-Powered-By: PHP/8.2"
+fofa:header="X-Powered-By: PHP/8.3"
+fofa:header="X-Powered-By: PHP/8.4"
+fofa:header="X-Powered-By: PHP/8.5"
+fofa:title="phpMyAdmin" && header="PHP"
+fofa:body="phpMyAdmin" && header="PHP/8"
+fofa:body="Fatal error" && body="PHP 8.2"
+fofa:body="Fatal error" && body="PHP 8.3"
+fofa:body="Fatal error" && body="PHP 8.4"
+
+# ──────────────────────────────────────────────────────────────
+#  ZOOMEYE  (zoomeye.hk — requires JWT API key)
+# ──────────────────────────────────────────────────────────────
+
+zoomeye:header:"X-Powered-By: PHP/8.2"
+zoomeye:header:"X-Powered-By: PHP/8.3"
+zoomeye:header:"X-Powered-By: PHP/8.4"
+zoomeye:header:"X-Powered-By: PHP/8.5"
+zoomeye:app:"PHP" ver:"8.2"
+zoomeye:app:"PHP" ver:"8.3"
+zoomeye:app:"PHP" ver:"8.4"
+zoomeye:app:"PHP" ver:"8.5"
+zoomeye:title:"phpMyAdmin" app:"PHP"
+zoomeye:header:"X-Powered-By: PHP/8"
+
+# ──────────────────────────────────────────────────────────────
+#  EXTRA  (add your own dorks below in backend:dork format)
+# ──────────────────────────────────────────────────────────────
+
+# google:site:example.com intitle:"phpinfo()"
+# shodan:"X-Powered-By: PHP/8.3" country:"ID"
+# fofa:header="X-Powered-By: PHP/8.3" && country="ID"
